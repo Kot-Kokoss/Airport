@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Удалить {{ transleItem(type) }}</h1>
+<mat-dialog-content>
+  <p>Введите код элемента для его удаления</p>
+  <mat-form-field>
+    <mat-label>Код элемента</mat-label>
+    <input matInput [(ngModel)]="item" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Отмена</button>
+  <button
+    mat-button
+    [mat-dialog-close]="item"
+    cdkFocusInitial
+    [disabled]="!item"
+    color="warn"
+    (click)="sendData()"
+  >
+    Удалить
+  </button>
+</mat-dialog-actions>

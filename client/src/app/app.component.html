@@ -1,0 +1,9 @@
+<header class="header">
+  <h1>{{ title }}</h1>
+</header>
+
+<div class="wrapper">
+  <mat-slide-toggle [(ngModel)]="isEdit">Просмотр / Изменение</mat-slide-toggle>
+  <app-watch-stats *ngIf="!isEdit"></app-watch-stats>
+  <app-edit-stats *ngIf="isEdit"></app-edit-stats>
+</div>
