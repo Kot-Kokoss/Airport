@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Добавить {{ transleItem(type) }}</h1>
+<mat-dialog-content>
+  <div *ngFor="let field of formConfig">
+    <mat-form-field appearance="fill" *ngIf="field.type !== 'select'">
+      <mat-label>{{ field.label }}</mat-label>
+      <input matInput [type]="field.type" [(ngModel)]="item[field.model]" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="field.type === 'select'">
+      <mat-label>{{ field.label }}</mat-label>
+      <mat-select [(ngModel)]="item[field.model]">
+        <mat-option *ngFor="let option of field.options" [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Отмена</button>
+  <button
+    mat-button
+    [mat-dialog-close]="item"
+    cdkFocusInitial
+    [disabled]="!isFormValid()"
+    (click)="sendData()"
+  >
+    Добавить
+  </button>
+</mat-dialog-actions>
